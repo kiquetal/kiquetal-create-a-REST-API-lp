@@ -1,2 +1,2 @@
-# creating-a-rest-api-with-quarkus-lp-author
-Repository for liveProject: Creating a REST API with Quarkus
+# create-a-rest-api-lp-author
+Repository for liveProject: Create a REST API
