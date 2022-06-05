@@ -1,11 +1,17 @@
 package io.chillplus;
+import io.quarkus.runtime.StartupEvent;
+
+import javax.enterprise.event.Observes;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 
 @Path("/api/tv")
-public class TvShowResrouce
+public class TvShowResource
 {
     private Long serial = 0L;
     private List<TvShow> arrayList = new ArrayList<>();
@@ -65,5 +71,10 @@ public class TvShowResrouce
         }
         return Response.status(Response.Status.NOT_FOUND).build();
     }
+    void onStart(@Observes StartupEvent event)
+    {
 
+        System.out.println(new SimpleDateFormat("HH:mm:ss:SSS").format(Date.from(Instant.now())));
+        System.out.println("onStart");
+    }
 }
