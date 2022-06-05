@@ -57,7 +57,7 @@ public class TvShowResource
     @Produces("application/json")
     public Response deleteAll() {
         this.arrayList.clear();
-        return Response.ok().build();
+        return Response.ok(this.arrayList).build();
     }
     @DELETE
     @Path("/{id}")

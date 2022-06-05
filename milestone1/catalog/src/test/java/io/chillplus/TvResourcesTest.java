@@ -71,5 +71,55 @@ public class TvResourcesTest
                 .body("$", Matchers.hasSize(1));
 
     }
+    @Test
+    public void getOneTvShow() {
 
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.put("title","titulo2");
+        given().contentType(ContentType.JSON).body(jsonObject.encode())
+                .post("/api/tv")
+                .then()
+                .statusCode(200);
+
+
+
+        given().get("/api/tv/1")
+                .then()
+                .statusCode(200)
+                .body("id",Matchers.is(1));
+
+    }
+
+    @Test
+    public void getNonExistingTvShow()
+    {
+        given().get("/api/tv/42")
+                .then()
+                .statusCode(404);
+
+    }
+    @Test
+    public void deleteAllTvShows()
+    {
+        given().delete("/api/tv")
+                .then()
+                .body("$.size()",Matchers.is(0));
+    }
+    @Test
+    public  void deleteOneTvShow()
+    {
+
+        JsonObject jsonObject = new JsonObject();
+        jsonObject.put("title","titulo2");
+        given().contentType(ContentType.JSON).body(jsonObject.encode())
+                .post("/api/tv")
+                .then()
+                .statusCode(200);
+
+
+        given().delete("/api/tv/1")
+             .then()
+             .statusCode(200);
+
+    }
 }
